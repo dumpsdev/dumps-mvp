@@ -1,0 +1,21 @@
+.header {
+    padding:2.4rem 0;
+    margin-bottom: 1rem;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    width: 4rem;
+}
+
+.profileMenu {
+    font-size: 2rem;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--gray);
+    border-radius: var(--radius);
+}

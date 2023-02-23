@@ -1,0 +1,15 @@
+.message {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+    margin: 2rem 0;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+.logo {
+    min-width: 10rem;
+    max-width: 10rem;
+    padding-top: 1rem;
+}
