@@ -2,9 +2,9 @@ import styles from './IdeaField.module.css'
 import React from 'react'
 import { AiOutlineArrowRight } from 'react-icons/ai';
 
-const IdeaSubmit = () => {
+const IdeaSubmit = ({onClick}) => {
   return (
-    <button className={styles.ideaSubmit}>
+    <button onClick={onClick} className={styles.ideaSubmit}>
        <AiOutlineArrowRight/>
     </button>
   )

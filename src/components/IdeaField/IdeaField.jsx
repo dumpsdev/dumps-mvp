@@ -1,26 +1,23 @@
 import React, { useState } from 'react'
+import Ideas from '../Ideas/Ideas';
 import styles from './IdeaField.module.css'
 import IdeaSubmit from './IdeaSubmit';
 
-const IdeaField = () => {
-    const [idea,setIdea] = useState();
-    const [activeText,setActiveText] = useState(true);
-
-    function handleIdeaText() {
-        if(!idea) setActiveText(true)
-    }
-
+const IdeaField = ({idea,handleChangeIdea,handleClick,activeText,setActiveText}) => {
     return (
         <div className={styles.ideaContainer}>
-            {activeText && <h2 onClick={() => document.querySelector('#ideaField').focus()} className={styles.ideaText}>Type an idea that you had but will not use</h2>}
+            {activeText && <h2 className={styles.ideaText}>Type an idea that you had but will not use</h2>}
             <input
                 id="ideaField"
-                onChange={({currentTarget})=> setIdea(currentTarget.value)}
+                value={idea}
+                onChange={handleChangeIdea}
                 onFocus={() => setActiveText(false)}
-                onBlur={handleIdeaText} 
+                onBlur={() => {
+                    if(!idea) setActiveText(true)
+                }} 
                 className={styles.ideaField} 
                 type="text" />
-            <IdeaSubmit className={styles.ideaSubmit}/>
+            {idea && <IdeaSubmit onClick={handleClick} className={styles.ideaSubmit}/>}
         </div>
     )
 }
