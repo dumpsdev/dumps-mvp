@@ -59,6 +59,13 @@
     margin: 1rem;
     border: 1px solid var(--gray);
     border-radius: var(--radius);
+    transition: .2s;
+}
+
+.selectContainer:hover,
+.shuffleFilter:hover {
+    border: 1px solid var(--dark);
+    color: var(--dark);
 }
 
 .selectContainer::before {
