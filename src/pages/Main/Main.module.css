@@ -13,3 +13,10 @@
     max-width: 10rem;
     padding-top: 1rem;
 }
+
+@media screen and (max-width: 380px) {
+    .message {
+        flex-direction: column;
+        gap: 0;
+    }
+}

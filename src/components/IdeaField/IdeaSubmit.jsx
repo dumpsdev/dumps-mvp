@@ -4,7 +4,7 @@ import React from 'react'
 const IdeaSubmit = () => {
   return (
     <button className={styles.ideaSubmit}>
-        <i class="fa-solid fa-arrow-right"></i>
+        <i className="fa-solid fa-arrow-right"></i>
     </button>
   )
 }

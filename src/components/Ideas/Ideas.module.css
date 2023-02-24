@@ -1,0 +1,35 @@
+.ideasContainer {
+    display: grid;
+    gap: 4rem;
+    grid-template-columns: repeat(3,minmax(0,1fr));
+    margin-bottom: 4rem;
+}
+
+.ideaAuthor {
+    font-size: 1.4rem;
+    color: var(--light);
+}
+
+.ideaAuthor span {
+    text-decoration: underline;
+}
+
+.ideaText {
+    font-size: 1.8rem;
+    text-align: center;
+    color: var(--light);
+    max-width: 25rem;
+    word-wrap: break-word;
+}
+
+@media screen and (max-width:1024px) {
+    .ideasContainer {
+        grid-template-columns: repeat(2,minmax(0,1fr));
+    }
+}
+
+@media screen and (max-width:520px) {
+    .ideasContainer {
+        grid-template-columns: repeat(1,minmax(0,1fr));
+    }
+}

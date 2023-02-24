@@ -30,7 +30,7 @@
     text-align: center;
     border: none;
     background: none;
-    word-break: break-word;
+    word-wrap: break-word;
 }
 
 .ideaField:focus {
