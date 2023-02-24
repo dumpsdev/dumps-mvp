@@ -43,7 +43,7 @@
     bottom: 2rem;
     right: 3rem;
     border-radius: 50%;
-    padding: .5rem 1rem;
+    padding: 1rem 1.5rem;
     background: var(--primary);
     border: none;
     color: var(--light);
@@ -53,4 +53,21 @@
 
 .ideaSubmit:hover {
     transform: translateX(4px);
+}
+
+@media screen and (max-width: 767px) {
+    .ideaText {
+        font-size: 4rem;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .ideaText {
+        font-size: 3.2rem;
+    }
+
+    .ideaSubmit {
+        bottom: 1rem;
+        right: 1.5rem;
+    }
 }

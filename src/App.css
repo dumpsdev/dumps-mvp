@@ -26,13 +26,17 @@ h1,h2,h3,h4,h5,h6 {
   font-family: "Poppins",sans-serif;
 }
 
+input:focus,select:focus {
+  outline: none;
+}
+
 :root {
   --primary:#9500FF;
   --light:#fff;
   --dark:#48434c;
   --gray:#A2A4A3;
   --background:#E8D2FF;
-  --radius:5px;
+  --radius:8px;
 }
 
 .container {
