@@ -18,12 +18,15 @@ export const AuthStorage = ({children}) => {
     const [loading,setLoading] = useState(false);
 
     useEffect(()=>{
-        const token = localStorage.getItem('userToken');
-        if(token) {
-            setAuthenticated(true);
-        } else {
-            setAuthenticated(false);
-        }
+        firebaseAuth.onAuthStateChanged(user => {
+            if (user) {
+                setAuthenticated(true);
+              setCurrentUser(user);
+            } else {
+              setCurrentUser(null);
+              setAuthenticated(false);
+            }
+          });
     },[])
 
     useEffect(()=>{
@@ -37,7 +40,7 @@ export const AuthStorage = ({children}) => {
         setPassword('');
     },[loginModal,registerModal])
 
-    const providerValues = {email,setEmail,name,setName,password,setPassword,currentUser,setCurrentUser,authenticated,setAuthenticated,register,setRegister,signInUser,signUpUser,signOutUser,loginModal,setLoginModal,registerModal,setRegisterModal,error,loading};
+    const providerValues = {email,setEmail,name,setName,password,setPassword,currentUser,setCurrentUser,authenticated,setAuthenticated,register,setRegister,signInUser,signUpUser,signOutUser,loginModal,setLoginModal,registerModal,setRegisterModal,error,loading,currentUser};
 
     function clearModal() {
         setEmail('');
@@ -54,8 +57,6 @@ export const AuthStorage = ({children}) => {
             setLoading(true);
             setError('');
             const response = await signInWithEmailAndPassword(firebaseAuth, email, password);
-            const token = response.user.accessToken;
-            localStorage.setItem('userToken',JSON.stringify(token));
             setCurrentUser(response.user);
             setAuthenticated(true);
         } catch(err) {
@@ -80,7 +81,6 @@ export const AuthStorage = ({children}) => {
     async function signOutUser() {
         try {
             const response = await signOut(firebaseAuth);
-            localStorage.removeItem('userToken');
             setAuthenticated(false);
         } catch(err) {
             setError(err.message);
