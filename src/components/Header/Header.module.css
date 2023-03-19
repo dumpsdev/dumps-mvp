@@ -13,9 +13,45 @@
     width: 4rem;
 }
 
+.profileContainer {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
 .profileMenu {
-    font-size: 2rem;
-    padding: 1rem 1.5rem;
+    font-size: 1.8rem;
+    padding: .5rem 2rem;
     border: 1px solid var(--gray);
     border-radius: var(--radius);
 }
+
+.authMenu {
+    display:flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.authAction,
+.authActionButton {
+    font-size: 1.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.authActionButton {
+    background: var(--primary);
+    color: var(--light);
+    padding: .6rem 1rem;
+    border-radius: var(--radius);
+}
+
+.authAction:hover {
+    color: var(--primary);
+}
+
+.authActionButton:hover {
+   transform: translateY(-4px);
+}
+

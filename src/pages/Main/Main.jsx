@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import IdeaField from '../../components/IdeaField/IdeaField'
 import styles from './Main.module.css'
 import MainSection from '../../components/MainSection/MainSection'
@@ -7,6 +7,9 @@ import Filter from '../../components/Filter/Filter';
 import Ideas from '../../components/Ideas/Ideas';
 import { addDoc, collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { firebaseDb } from '../../config/firebase';
+import Login from '../../components/Auth/Login';
+import Register from '../../components/Auth/Register';
+import { AuthContext } from '../../AuthContext';
 
 const Main = () => {
     const [success, setSuccess] = useState('');
@@ -17,6 +20,7 @@ const Main = () => {
     const [category,setCategory] = useState('');
     const [sort,setSort] = useState('');
     const [ideas,setIdeas] = useState([]);
+    const {login,setLogin,register,setRegister} = useContext(AuthContext);
     const types = ['social-media','video','pictures','work','music',''];
 
     function sortDocumentsByTimestamp(documents, sort) {
@@ -50,14 +54,6 @@ const Main = () => {
         getIdeas();
     },[]);
 
-    async function test() {
-        // const q = query(collection(firebaseDb, 'ideas'), orderBy('timestamp', 'desc'));
-        // const data = response.docs.map((doc) => ({
-        //     id: doc.id,
-        //     ...doc.data(),
-        //   }))
-    }
-
     async function createIdea() {
         try {
             setError('');
@@ -83,7 +79,6 @@ const Main = () => {
     }
 
     async function filterByIdea(text,type) {
-        console.log(type ? 'ok' : 'not ok')
         try {
             setError('');
             const q = type ?query(collection(firebaseDb, 'ideas'), where('text', '>=', text), where('text', '<', text + '\uf8ff'),where('type','==',type)) : query(collection(firebaseDb, 'ideas'), where('text', '>=', text), where('text', '<', text + '\uf8ff'));
@@ -92,7 +87,6 @@ const Main = () => {
               id: doc.id,
               ...doc.data(),
             }));
-            console.log(data)
             setIdeas(data);
         } catch {
             setError('Error to get the ideas')
@@ -134,11 +128,10 @@ const Main = () => {
 
     useEffect(()=>{
         filterByCategory(category,sort);
-        const test = sortDocumentsByTimestamp(ideas,sort);
-        console.log(test);
     },[category,sort]);
 
     return (
+        <>
         <MainSection>
             <IdeaField 
                 idea={idea} 
@@ -159,7 +152,8 @@ const Main = () => {
                 handleShuffle={randomizeIdeas}
             />
             <Ideas ideas={ideas}/>
-        </MainSection>    
+        </MainSection>   
+        </>
     )
 }
 
