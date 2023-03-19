@@ -30,15 +30,24 @@ export const AuthStorage = ({children}) => {
         if(authenticated) clearModal();
     },[authenticated])
 
+    useEffect(()=>{
+        setError('');
+        setEmail('');
+        setName('');
+        setPassword('');
+    },[loginModal,registerModal])
+
     const providerValues = {email,setEmail,name,setName,password,setPassword,currentUser,setCurrentUser,authenticated,setAuthenticated,register,setRegister,signInUser,signUpUser,signOutUser,loginModal,setLoginModal,registerModal,setRegisterModal,error,loading};
 
     function clearModal() {
         setEmail('');
         setName('');
         setPassword('');
+        setError('');
         setLoginModal(false);
         setRegisterModal(false);
     }
+
 
     async function signInUser(email,password) {
         try {
