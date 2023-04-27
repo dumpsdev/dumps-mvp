@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { firebaseAuth } from './config/firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword,signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword,signOut,updateProfile } from "firebase/auth";
 
 
 export const AuthContext = createContext();
@@ -68,15 +68,17 @@ export const AuthStorage = ({children}) => {
         }
     }
 
-    async function signUpUser(email,password,name) {
+    async function signUpUser(email, password, name) {
         try {
-            setError('');
-            const response = await createUserWithEmailAndPassword(firebaseAuth, email, password);
-            await signInUser(email, password);
-        } catch(err) {
-            setError(err.message.replace('Firebase','').replace(':',''));
+          setError('');
+          const { user } = await createUserWithEmailAndPassword(firebaseAuth, email, password);
+          await updateProfile(user, { displayName: name });
+          await signInUser(email, password);
+        } catch (err) {
+          setError(err.message.replace('Firebase', '').replace(':', ''));
         }
     }
+      
 
     async function signOutUser() {
         try {
