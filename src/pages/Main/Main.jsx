@@ -17,11 +17,11 @@ const Main = () => {
     const [idea,setIdea] = useState('');
     const [activeText,setActiveText] = useState(true);
     const [ideaSearch,setIdeaSearch] = useState('');
+    const [ideaCategory,setIdeaCategory] = useState('');
     const [category,setCategory] = useState('');
     const [sort,setSort] = useState('');
     const [ideas,setIdeas] = useState([]);
     const {authenticated,login,setLogin,register,setRegister,currentUser} = useContext(AuthContext);
-    const types = ['social-media','video','pictures','work','music',''];
 
     function sortDocumentsByTimestamp(documents, sort) {
         const sortedDocuments = documents; 
@@ -58,9 +58,9 @@ const Main = () => {
         try {
             setError('');
             await addDoc(collection(firebaseDb, 'ideas'), {
-                type:types[Math.floor(Math.random() * types.length)],
+                type:ideaCategory,
                 text: idea,
-                userId:currentUser ? currentUser.displayName : 'Random',
+                userId:currentUser ? currentUser.displayName : 'Anonymous User',
                 timestamp:new Date().getTime()
             })
             setSuccess('Idea sent successfully!');
@@ -136,6 +136,8 @@ const Main = () => {
         <MainSection>
             <IdeaField 
                 idea={idea} 
+                category={ideaCategory}
+                setCategory={setIdeaCategory}
                 handleChangeIdea={handleChangeIdea} 
                 handleClick={createIdea}
                 activeText={activeText}
@@ -152,7 +154,7 @@ const Main = () => {
                 handleSearch={() => filterByIdea(ideaSearch,category) }
                 handleShuffle={randomizeIdeas}
             />
-            {authenticated && <Ideas ideas={ideas}/> }
+            <Ideas ideas={ideas}/>
         </MainSection>   
         </>
     )

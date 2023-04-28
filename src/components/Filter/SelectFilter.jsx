@@ -8,7 +8,7 @@ const SelectFilter = ({options,value,setValue,defaultOption,...props}) => {
         setValue(currentTarget.value);
       }} {...props}>
         <option value="">{defaultOption}</option>
-        {options.map((option) => (
+        {options && options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
           </option>

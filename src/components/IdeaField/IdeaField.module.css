@@ -38,18 +38,32 @@
     outline: none;
 }
 
-.ideaSubmit {
-    font-size: 2.2rem;
+.ideaContainerSubmit {
+    display: flex;
+    gap: 2rem;
     position: absolute;
     bottom: 2rem;
     right: 3rem;
+    align-items: center;
+}
+
+.ideaSubmit {
+    font-size: 2.2rem;
     border-radius: 50%;
-    padding: 1rem 1.5rem;
+    padding: .8rem 1.5rem;
     background: var(--primary);
     border: none;
     color: var(--light);
     cursor: pointer;
     transition: .2s;
+}
+
+.ideaSubmit:disabled {
+    opacity: .2;
+}
+
+.ideaSubmit:disabled:hover {
+    transform: translateX(0);
 }
 
 .ideaSubmit:hover {

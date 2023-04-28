@@ -3,19 +3,11 @@ import InputFilter from './InputFilter'
 import SelectFilter from './SelectFilter'
 import styles from './Filter.module.css'
 import ShuffleFilter from './ShuffleFilter';
-
-const categories = [
-    {value:'social-media',label: 'Social Media'},
-    {value:'video',label: 'Video'},
-    {value:'work',label: 'Work'},
-    {value:'pictures',label: 'Pictures'},
-    {value:'music',label: 'Music'},
-    {value:'projects',label: 'Projects'}
-];
+import { categories } from '../../data/categories';
 
 const sortBy = [
-    {value:'desc',label: 'DESC'},
-    {value:'asc',label: 'ASC'},
+    {value:'desc',label: 'Latest'},
+    {value:'asc',label: 'Older'},
 ];
 
 const Filter = ({ideaSearch,setIdeaSearch,handleSearch,handleFilterCategory,handleFilterSort,category,sort,setCategory,setSort,handleShuffle}) => {
