@@ -4,5 +4,6 @@ export const categories = [
     {value:'work',label: 'Work'},
     {value:'pictures',label: 'Pictures'},
     {value:'music',label: 'Music'},
-    {value:'projects',label: 'Projects'}
+    {value:'projects',label: 'Projects'},
+    {value:'others',label: 'Others'}
 ];
