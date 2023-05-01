@@ -6,8 +6,9 @@ import IdeaSubmit from './IdeaSubmit';
 import SelectFilter from '../Filter/SelectFilter';
 import { categories } from '../../data/categories';
 import { useEffect } from 'react';
+import Input from '../Form/Input';
 
-const IdeaField = ({idea,handleChangeIdea,handleClick,activeText,setActiveText,category,setCategory}) => {
+const IdeaField = ({idea,handleChangeIdea,handleClick,activeText,setActiveText,name,setName,category,setCategory,ideaLength}) => {
     const [submitDisabled,setSubmitDisabled] = useState(true);
     const {authenticated,setLoginModal} = useContext(AuthContext);
 
@@ -22,6 +23,7 @@ const IdeaField = ({idea,handleChangeIdea,handleClick,activeText,setActiveText,c
     useEffect(()=>{
         if(idea.length === 0) {
             setCategory('');
+            setName('');
         }
     },[idea])
 
@@ -43,12 +45,17 @@ const IdeaField = ({idea,handleChangeIdea,handleClick,activeText,setActiveText,c
                     if(!idea) setActiveText(true)
                 }} 
                 className={styles.ideaField} 
+                maxlength="300"
                 type="text" />
             {idea && 
-            <div className={styles.ideaContainerSubmit}>  
-                <SelectFilter value={category} setValue={setCategory} options={categories} defaultOption="Select your category"/>
-                <IdeaSubmit disabled={submitDisabled} onClick={handleClick} className={styles.ideaSubmit}/>
-            </div>
+            <>
+                <div className={styles.ideaContainerSubmit}>  
+                    <Input value={name} setValue={setName} placeholder="Type your name"/>
+                    <SelectFilter value={category} setValue={setCategory} options={categories} defaultOption="Select your category"/>
+                    <IdeaSubmit disabled={submitDisabled} onClick={handleClick} className={styles.ideaSubmit}/>
+                </div>
+                <div className={styles.ideaLength}>{ideaLength}/300</div>
+            </>
             }
         </div>
     )

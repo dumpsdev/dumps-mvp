@@ -21,7 +21,9 @@ const Main = () => {
     const [category,setCategory] = useState('');
     const [sort,setSort] = useState('');
     const [ideas,setIdeas] = useState([]);
-    const {authenticated,login,setLogin,register,setRegister,currentUser} = useContext(AuthContext);
+    const [name,setName] = useState('');
+    const [ideaLength,setIdeaLength] = useState(0);
+    const {currentUser} = useContext(AuthContext);
 
     function sortDocumentsByTimestamp(documents, sort) {
         const sortedDocuments = documents; 
@@ -60,7 +62,7 @@ const Main = () => {
             await addDoc(collection(firebaseDb, 'ideas'), {
                 type:ideaCategory,
                 text: idea,
-                userId:currentUser ? currentUser.displayName : 'Anonymous User',
+                userId:name.length > 0 ? name : 'Anonymous User',
                 timestamp:new Date().getTime()
             })
             setSuccess('Idea sent successfully!');
@@ -75,8 +77,14 @@ const Main = () => {
     }
 
 
-    function handleChangeIdea({currentTarget}) {
+    function handleChangeIdea(e) {
+        const {currentTarget} = e;
+        const maxLength = parseInt(currentTarget.maxLength);
+        setIdeaLength(currentTarget.value.length);
         setIdea(currentTarget.value);
+        if (ideaLength >= maxLength && e.key !== 'Backspace') {
+            e.preventDefault();
+        }
     }
 
     async function filterByIdea(text,type) {
@@ -136,12 +144,15 @@ const Main = () => {
         <MainSection>
             <IdeaField 
                 idea={idea} 
+                name={name}
+                setName={setName}
                 category={ideaCategory}
                 setCategory={setIdeaCategory}
                 handleChangeIdea={handleChangeIdea} 
                 handleClick={createIdea}
                 activeText={activeText}
                 setActiveText={setActiveText}
+                ideaLength={ideaLength}
             />
             <h4 className={styles.message}>or explore people's<div className={styles.logo}><Logo/></div></h4>
             <Filter 

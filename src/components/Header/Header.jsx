@@ -36,9 +36,9 @@ const Header = () => {
             <NavLink className={styles.brand} to="/">
                 <Brand />
             </NavLink>
-            {authenticated ? <ProfileMenu/> : <AuthMenu menuClick={handleAuthModal}/>}
+            {/* {authenticated ? <ProfileMenu/> : <AuthMenu menuClick={handleAuthModal}/>}
             {loginModal && <Login/>}
-            {registerModal && <Register registerFunction={createUser}/>}
+            {registerModal && <Register registerFunction={createUser}/>} */}
         </div>
     </header>
   )

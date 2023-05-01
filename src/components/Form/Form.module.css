@@ -1,0 +1,28 @@
+.formInput {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    appearance: none;
+    color: var(--dark);
+    font-size: 1.6rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.8rem 1.5rem;
+    min-width: 20rem;
+    height: 4rem;
+    margin: 1rem;
+    border: 1px solid var(--gray);
+    border-radius: var(--radius);
+    transition: .2s;
+}
+
+.formInput::placeholder {
+    color: var(--gray);
+}
+
+@media (max-width: 767px) {
+    .formInput {
+        flex: 1;
+    }
+}

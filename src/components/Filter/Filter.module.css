@@ -121,5 +121,9 @@
     .filterContainer .shuffleFilter {
        width: 100%;
     }
+
+    .selectContainer {
+        width: 100%;  
+    }
 }
 

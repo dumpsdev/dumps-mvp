@@ -2,7 +2,7 @@
     border:1px solid var(--gray);
     border-radius: var(--radius);
     padding: 4rem;
-    min-height: 30rem;
+    min-height: 35rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -40,7 +40,6 @@
 
 .ideaContainerSubmit {
     display: flex;
-    gap: 2rem;
     position: absolute;
     bottom: 2rem;
     right: 3rem;
@@ -49,6 +48,7 @@
 
 .ideaSubmit {
     font-size: 2.2rem;
+    margin-left: 2.5rem;
     border-radius: 50%;
     padding: 1rem 1.5rem;
     background: var(--primary);
@@ -70,9 +70,39 @@
     transform: translateX(4px);
 }
 
+.ideaLength {
+    position: absolute;
+    left: 2rem;
+    bottom: 2.8rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
 @media screen and (max-width: 767px) {
     .ideaText {
         font-size: 4rem;
+    }
+
+    .ideaContainerSubmit {
+        position: static;
+    }
+
+    .ideaSubmit {
+        margin-left: 0;
+        margin-top: 2rem;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .ideaContainerSubmit {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .ideaLength {
+        font-size: 1.6rem;
+        bottom: 1rem;
     }
 }
 
